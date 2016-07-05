@@ -1,54 +1,61 @@
 import Foundation
+import SwiftGmp
 
-typealias Matrix = (Int, Int, Int, Int)
+typealias Matrix = (GmpInt, GmpInt, GmpInt, GmpInt)
 
-func extr(_ m: Matrix, _ x: Int ) -> Double {
-    let a = Double(m.0) * Double(x) + Double(m.1)
-    let b = Double(m.2) * Double(x) + Double(m.3)
+let unit = (GmpInt(1), GmpInt(0), GmpInt(0), GmpInt(1))
+
+func * (lhs: Matrix, rhs: Matrix) -> Matrix {
+    return ((lhs.0*rhs.0)+(lhs.1*rhs.2),
+            (lhs.0*rhs.1)+(lhs.1*rhs.3),
+            (lhs.2*rhs.0)+(lhs.3*rhs.2),
+            (lhs.2*rhs.1)+(lhs.3*rhs.3))
+}
+
+func generate(_ k: GmpInt) -> Matrix {
+    return (k, GmpInt(4)*k+GmpInt(2), GmpInt(0), GmpInt(2)*k+GmpInt(1))
+}
+
+func extr(_ m: Matrix, _ x: GmpInt ) -> GmpInt {
+    let a = (m.0 * x) + m.1
+    let b = (m.2 * x) + m.3
     return a/b
 }
 
-let unit = (1, 0, 0, 1)
-
-func * (lhs: Matrix, rhs: Matrix) -> Matrix {
-    return (lhs.0*rhs.0+lhs.1*rhs.2,
-            lhs.0*rhs.1+lhs.1*rhs.3,
-            lhs.2*rhs.0+lhs.3*rhs.2,
-            lhs.2*rhs.1+lhs.3*rhs.3)
-    
+func safe(_ z: Matrix, _ n: GmpInt) -> Bool {
+    return n != extr(z, GmpInt(4))
 }
 
-func generate(_ k: Int) -> Matrix {
-    return (k, 4*k+2, 0, 2*k+1)
+func prod(_ z: Matrix, _ n: GmpInt) -> Matrix {
+    return (GmpInt(10), GmpInt(-10)*n, GmpInt(0), GmpInt(1)) * z
 }
 
-func safe(_ z: Matrix, _ n: Int) -> Bool {
-    return n == Int(floor(extr(z, 4)))
+func next (_ z: Matrix) -> GmpInt {
+    return extr(z, GmpInt(3))
 }
 
-func prod(_ z: Matrix, _ n: Int) -> Matrix {
-    return (10, -10*n, 0, 1) * z
+func printMatrix(_ z: Matrix) {
+    let p = "[\(z.0.intValue)\t\(z.1.intValue)]\n[\(z.2.intValue)\t\(z.3.intValue)]"
+    print(p)
 }
 
-func next (_ z: Matrix) -> Int {
-    return Int(floor(extr(z, 3)))
-}
-
-func computePi(withDigits digits: Int) {
+func computePi(withDigits digits: GmpInt) {
 
     var z = unit
-    var n = 1
-    var k = 1
+    var n = GmpInt(1)
+    var k = GmpInt(1)
     
     while n <= digits {
         
         let y = next( z )
+        printMatrix(z)
         
         if safe(z, y) {
             
-            print (y)
+            print (y.intValue)
+            
             z = prod(z, y)
-            n+=1
+            n += 1
             
         } else {
             

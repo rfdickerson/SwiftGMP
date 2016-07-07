@@ -1,5 +1,5 @@
 import Foundation
-import SwiftGmp
+import CGMP
 
 class GmpInt {
     
@@ -84,10 +84,6 @@ func / (lhs: GmpInt, rhs: GmpInt) -> GmpInt {
 func /= (lhs: GmpInt, rhs: GmpInt) {
     __gmpz_fdiv_q(&lhs.i, &lhs.i, &rhs.i)
 }
-
-//func <= (lhs: GmpInt, rhs: GmpInt) -> Bool {
-//    return (__gmpz_cmp(&lhs.i, &rhs.i) < 0)
-//}
 
 func <(lhs: GmpInt, rhs: GmpInt) -> Bool {
     return (__gmpz_cmp(&lhs.i, &rhs.i) < 0)

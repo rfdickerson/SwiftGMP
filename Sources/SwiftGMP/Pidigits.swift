@@ -1,5 +1,5 @@
 import Foundation
-import SwiftGmp
+import CGMP
 
 typealias Matrix = (GmpInt, GmpInt, GmpInt, GmpInt)
 

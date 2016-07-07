@@ -1,4 +1,4 @@
-module SwiftGmp [system] {
+module CGMP [system] {
 	header "/usr/local/include/gmp.h"
 	link "gmp"
 	export *

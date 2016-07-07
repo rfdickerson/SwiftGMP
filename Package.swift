@@ -1,7 +1,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Pidigits",
-    targets: [Target(name: "Pidigits", dependencies: [.Target(name: "SwiftGmp")]),
-              Target(name: "SwiftGmp")]
+    name: "SwiftGMP",
+    targets: [Target(name: "SwiftGMP", dependencies: [.Target(name: "CGMP")]),
+              Target(name: "CGMP")]
 )

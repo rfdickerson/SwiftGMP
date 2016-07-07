@@ -1,7 +1,7 @@
 import XCTest
-@testable import Pidigits
+@testable import SwiftGMP
 
-class pidigitsTests: XCTestCase {
+class integerTests: XCTestCase {
     
     func testComputePi() {
         

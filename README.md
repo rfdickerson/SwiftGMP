@@ -13,7 +13,7 @@ Contains an example of using BigInts for calculating digits of Pi using the [Unb
 - [Install the Swift Development 6-20 snapshots](https://swift.org/download/)
 - Compile from source the [GMP library](https://gmplib.org/)
   
-  It is important to compile from source because Homebrew or apt-get do not employ the Assembly optimizations and the speed of arithmetic is noticably slower.
+  It is important to compile from source because Homebrew or apt-get do not employ the Assembly optimizations and the speed of arithmetic is noticeably slower.
 
   ```bash
   ./configure

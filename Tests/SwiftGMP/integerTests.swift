@@ -6,14 +6,14 @@ class integerTests: XCTestCase {
     func testComputePi() {
         
         self.measure() {
-            computePi(withDigits: GmpInt(6))
+            computePi(withDigits: BigInt(6))
         }
         
     }
     
     func testMultiply() {
-        let a = GmpInt(6)
-        let b = GmpInt(7)
+        let a = BigInt(6)
+        let b = BigInt(7)
         
         let c = a * b
         
@@ -24,8 +24,8 @@ class integerTests: XCTestCase {
     }
     
     func testAdd() {
-        let a = GmpInt(6)
-        let b = GmpInt(7)
+        let a = BigInt(6)
+        let b = BigInt(7)
         
         let c = a + b
         
@@ -35,9 +35,9 @@ class integerTests: XCTestCase {
     }
     
     func testAddMult() {
-        let a = GmpInt(6)
-        let b = GmpInt(7)
-        let c = GmpInt(3)
+        let a = BigInt(6)
+        let b = BigInt(7)
+        let c = BigInt(3)
         
         let d = a * b + c
         
@@ -48,8 +48,8 @@ class integerTests: XCTestCase {
     
     func testDivide() {
         
-        let a = GmpInt(36)
-        let b = GmpInt(5)
+        let a = BigInt(36)
+        let b = BigInt(5)
         
         let c = a/b
         
@@ -61,16 +61,16 @@ class integerTests: XCTestCase {
     
     
     func testIncrement() {
-        var a = GmpInt(6)
+        var a = BigInt(6)
         a += 1
         
         XCTAssertEqual(a.intValue, 7)
     }
     
     func testEqual() {
-        let a = GmpInt(36)
-        let b = GmpInt(36)
-        let c = GmpInt(5)
+        let a = BigInt(36)
+        let b = BigInt(36)
+        let c = BigInt(5)
         
         XCTAssertEqual(a, b)
         XCTAssertNotEqual(a, c)
@@ -78,9 +78,9 @@ class integerTests: XCTestCase {
     
     func testLessThanEqual() {
         
-        let a = GmpInt(36)
-        let b = GmpInt(5)
-        let c = GmpInt(36)
+        let a = BigInt(36)
+        let b = BigInt(5)
+        let c = BigInt(36)
         
         XCTAssertLessThan(b, a)
         XCTAssertLessThanOrEqual(a, c)
@@ -88,14 +88,14 @@ class integerTests: XCTestCase {
     }
     
     func testNegative() {
-        let a = GmpInt(-10)
-        let b = GmpInt(5)
+        let a = BigInt(-10)
+        let b = BigInt(5)
         
         let c = a*b
         XCTAssertEqual(c.intValue, -50)
     }
 
-    static var allTests : [(String, (pidigitsTests) -> () throws -> Void)] {
+    static var allTests : [(String, (integerTests) -> () throws -> Void)] {
         return [
             ("testComputePi", testComputePi),
         ]

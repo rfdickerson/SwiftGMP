@@ -1,9 +1,9 @@
 import Foundation
-import CGMP
+import SwiftGMP
 
-typealias Matrix = (GmpInt, GmpInt, GmpInt, GmpInt)
+typealias Matrix = (BigInt, BigInt, BigInt, BigInt)
 
-let unit = (GmpInt(1), GmpInt(0), GmpInt(0), GmpInt(1))
+let unit = (BigInt(1), BigInt(0), BigInt(0), BigInt(1))
 
 func * (lhs: Matrix, rhs: Matrix) -> Matrix {
     return ((lhs.0*rhs.0)+(lhs.1*rhs.2),
@@ -12,26 +12,26 @@ func * (lhs: Matrix, rhs: Matrix) -> Matrix {
             (lhs.2*rhs.1)+(lhs.3*rhs.3))
 }
 
-func generate(_ k: GmpInt) -> Matrix {
-    return (k, GmpInt(4)*k+GmpInt(2), GmpInt(0), GmpInt(2)*k+GmpInt(1))
+func generate(_ k: BigInt) -> Matrix {
+    return (k, BigInt(4)*k+BigInt(2), BigInt(0), BigInt(2)*k+BigInt(1))
 }
 
-func extr(_ m: Matrix, _ x: GmpInt ) -> GmpInt {
+func extr(_ m: Matrix, _ x: BigInt ) -> BigInt {
     let a = (m.0 * x) + m.1
     let b = (m.2 * x) + m.3
     return a/b
 }
 
-func safe(_ z: Matrix, _ n: GmpInt) -> Bool {
-    return n == extr(z, GmpInt(4))
+func safe(_ z: Matrix, _ n: BigInt) -> Bool {
+    return n == extr(z, BigInt(4))
 }
 
-func prod(_ z: Matrix, _ n: GmpInt) -> Matrix {
-    return (GmpInt(10), GmpInt(-10)*n, GmpInt(0), GmpInt(1)) * z
+func prod(_ z: Matrix, _ n: BigInt) -> Matrix {
+    return (BigInt(10), BigInt(-10)*n, BigInt(0), BigInt(1)) * z
 }
 
-func next (_ z: Matrix) -> GmpInt {
-    return extr(z, GmpInt(3))
+func next (_ z: Matrix) -> BigInt {
+    return extr(z, BigInt(3))
 }
 
 func printMatrix(_ z: Matrix) {
@@ -39,11 +39,11 @@ func printMatrix(_ z: Matrix) {
     print(p)
 }
 
-func computePi(withDigits digits: GmpInt) {
+func computePi(withDigits digits: BigInt) {
 
     var z = unit
-    var n = GmpInt(1)
-    var k = GmpInt(1)
+    var n = BigInt(1)
+    var k = BigInt(1)
     
     while n <= digits {
         
@@ -67,3 +67,6 @@ func computePi(withDigits digits: GmpInt) {
       
     }
 }
+
+computePi(withDigits: BigInt(7))
+

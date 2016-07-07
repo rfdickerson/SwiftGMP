@@ -1,11 +1,11 @@
 import Foundation
 import CGMP
 
-class GmpInt {
+public class BigInt {
     
     var i = mpz_t()
     
-    init(_ value: Int = 0) {
+    public init(_ value: Int = 0) {
         
         __gmpz_init(&i)
         __gmpz_set_si(&i, value )
@@ -13,7 +13,7 @@ class GmpInt {
     }
     
     
-    init(withPointer pointer: UnsafeMutablePointer<mpz_t>) {
+    public init(withPointer pointer: UnsafeMutablePointer<mpz_t>) {
         self.i = pointer.pointee
     }
     
@@ -21,7 +21,7 @@ class GmpInt {
         __gmpz_clear(&i)
     }
     
-    var intValue: Int {
+    public var intValue: Int {
         
         let ret = __gmpz_get_si(&self.i)
         return ret
@@ -30,61 +30,61 @@ class GmpInt {
     
 }
 
-extension GmpInt: Equatable {}
+extension BigInt: Equatable {}
 
-extension GmpInt: Comparable {}
+extension BigInt: Comparable {}
 
-func * (lhs: GmpInt, rhs: GmpInt) -> GmpInt {
-    let ret = GmpInt()
+public func * (lhs: BigInt, rhs: BigInt) -> BigInt {
+    let ret = BigInt()
     __gmpz_mul(&ret.i, &lhs.i, &rhs.i)
     return ret
 }
 
-func * (lhs: Int, rhs: GmpInt) -> GmpInt {
-    let ret = GmpInt()
-    let tmp = GmpInt(lhs)
+public func * (lhs: Int, rhs: BigInt) -> BigInt {
+    let ret = BigInt()
+    let tmp = BigInt(lhs)
     __gmpz_mul(&ret.i, &tmp.i, &rhs.i)
     return ret
 }
 
-func + (lhs: GmpInt, rhs: GmpInt) -> GmpInt {
-    let ret = GmpInt()
+public func + (lhs: BigInt, rhs: BigInt) -> BigInt {
+    let ret = BigInt()
     __gmpz_add(&ret.i, &lhs.i, &rhs.i)
     return ret
 }
 
-func += (lhs: inout GmpInt, rhs: GmpInt) {
+public func += (lhs: inout BigInt, rhs: BigInt) {
     __gmpz_add(&lhs.i, &lhs.i, &rhs.i)
 }
 
-func += (lhs: inout GmpInt, rhs: Int) {
-    let tmp = GmpInt(rhs)
+public func += (lhs: inout BigInt, rhs: Int) {
+    let tmp = BigInt(rhs)
     __gmpz_add(&lhs.i, &lhs.i, &tmp.i)
 }
 
-func *= (lhs: inout GmpInt, rhs: GmpInt) {
+public func *= (lhs: inout BigInt, rhs: BigInt) {
     __gmpz_mul(&lhs.i, &lhs.i, &rhs.i)
 }
 
-func == (lhs: GmpInt, rhs: GmpInt) -> Bool {
+public func == (lhs: BigInt, rhs: BigInt) -> Bool {
     return (0 == __gmpz_cmp(&lhs.i, &rhs.i))
 }
 
 
-func != (lhs: GmpInt, rhs: GmpInt) -> Bool {
+public func != (lhs: BigInt, rhs: BigInt) -> Bool {
     return !(lhs == rhs)
 }
 
-func / (lhs: GmpInt, rhs: GmpInt) -> GmpInt {
-    let ret = GmpInt(0)
+public func / (lhs: BigInt, rhs: BigInt) -> BigInt {
+    let ret = BigInt(0)
     __gmpz_fdiv_q(&ret.i,&lhs.i,&rhs.i)
     return ret
 }
 
-func /= (lhs: GmpInt, rhs: GmpInt) {
+public func /= (lhs: BigInt, rhs: BigInt) {
     __gmpz_fdiv_q(&lhs.i, &lhs.i, &rhs.i)
 }
 
-func <(lhs: GmpInt, rhs: GmpInt) -> Bool {
+public func <(lhs: BigInt, rhs: BigInt) -> Bool {
     return (__gmpz_cmp(&lhs.i, &rhs.i) < 0)
 }

@@ -3,7 +3,7 @@ import CGMP
 
 public class BigInt {
     
-    var i = mpz_t()
+    private var i = mpz_t()
     
     public init(_ value: Int = 0) {
         
@@ -69,7 +69,6 @@ public func *= (lhs: inout BigInt, rhs: BigInt) {
 public func == (lhs: BigInt, rhs: BigInt) -> Bool {
     return (0 == __gmpz_cmp(&lhs.i, &rhs.i))
 }
-
 
 public func != (lhs: BigInt, rhs: BigInt) -> Bool {
     return !(lhs == rhs)

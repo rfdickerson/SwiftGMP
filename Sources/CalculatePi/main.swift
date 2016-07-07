@@ -12,8 +12,8 @@ func * (lhs: Matrix, rhs: Matrix) -> Matrix {
             (lhs.2*rhs.1)+(lhs.3*rhs.3))
 }
 
-func generate(_ k: BigInt) -> Matrix {
-    return (k, BigInt(4)*k+BigInt(2), BigInt(0), BigInt(2)*k+BigInt(1))
+func generate(_ k: Int) -> Matrix {
+    return (BigInt(k), BigInt(4)*BigInt(k)+BigInt(2), BigInt(0), BigInt(2)*BigInt(k)+BigInt(1))
 }
 
 func extr(_ m: Matrix, _ x: BigInt ) -> BigInt {
@@ -39,16 +39,15 @@ func printMatrix(_ z: Matrix) {
     print(p)
 }
 
-func computePi(withDigits digits: BigInt) {
+func computePi(withDigits digits: Int) {
 
     var z = unit
-    var n = BigInt(1)
-    var k = BigInt(1)
+    var n = 1
+    var k = 1
     
     while n <= digits {
         
         let y = next( z )
-        printMatrix(z)
         
         if safe(z, y) {
             
@@ -68,5 +67,5 @@ func computePi(withDigits digits: BigInt) {
     }
 }
 
-computePi(withDigits: BigInt(7))
+computePi(withDigits: 20)
 

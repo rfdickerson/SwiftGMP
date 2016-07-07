@@ -3,14 +3,6 @@ import XCTest
 
 class integerTests: XCTestCase {
     
-    func testComputePi() {
-        
-        self.measure() {
-            computePi(withDigits: BigInt(6))
-        }
-        
-    }
-    
     func testMultiply() {
         let a = BigInt(6)
         let b = BigInt(7)
@@ -97,7 +89,9 @@ class integerTests: XCTestCase {
 
     static var allTests : [(String, (integerTests) -> () throws -> Void)] {
         return [
-            ("testComputePi", testComputePi),
+            ("testMultiply", testMultiply),
+            ("testAdd", testAdd),
+            ("testEqual", testEqual)
         ]
     }
 }

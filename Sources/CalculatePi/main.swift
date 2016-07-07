@@ -42,19 +42,29 @@ func printMatrix(_ z: Matrix) {
 func computePi(withDigits digits: Int) {
 
     var z = unit
-    var n = 1
+    var n = 0
     var k = 1
+    var j = 0
     
-    while n <= digits {
+    var buffer = [Int](repeating: 0, count: 10)
+    
+    while n < digits {
         
         let y = next( z )
         
         if safe(z, y) {
             
-            print (y.intValue)
+            buffer[j] = y.intValue
+            j += 1
             
             z = prod(z, y)
             n += 1
+            
+            if j > 9 {
+                printOutput(buffer, n)
+                j = 0
+            }
+            
             
         } else {
             
@@ -65,7 +75,31 @@ func computePi(withDigits digits: Int) {
         }
       
     }
+    
+    if n%10 != 0 {
+        printOutput(buffer, n)
+    }
 }
 
-computePi(withDigits: 20)
+func printOutput(_ buffer: [Int], _ n: Int) {
+    var output = ""
+    var count = 0
+    
+    for num in buffer {
+        
+        if n%10==0 || count < n%10 {
+            output += "\(num)"
+        } else {
+            output += " "
+        }
+        
+        count += 1
+    }
+    
+    output += "\t:\(n)"
+    
+    print(output)
+}
+
+computePi(withDigits: 27)
 

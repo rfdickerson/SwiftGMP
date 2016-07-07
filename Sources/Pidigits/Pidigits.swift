@@ -23,7 +23,7 @@ func extr(_ m: Matrix, _ x: GmpInt ) -> GmpInt {
 }
 
 func safe(_ z: Matrix, _ n: GmpInt) -> Bool {
-    return n != extr(z, GmpInt(4))
+    return n == extr(z, GmpInt(4))
 }
 
 func prod(_ z: Matrix, _ n: GmpInt) -> Matrix {

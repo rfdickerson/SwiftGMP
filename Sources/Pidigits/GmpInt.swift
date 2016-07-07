@@ -4,7 +4,6 @@ import SwiftGmp
 class GmpInt {
     
     var i = mpz_t()
-    var dummy = 0
     
     init(_ value: Int = 0) {
         
@@ -12,6 +11,7 @@ class GmpInt {
         __gmpz_set_si(&i, value )
         
     }
+    
     
     init(withPointer pointer: UnsafeMutablePointer<mpz_t>) {
         self.i = pointer.pointee

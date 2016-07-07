@@ -6,7 +6,7 @@ class pidigitsTests: XCTestCase {
     func testComputePi() {
         
         self.measure() {
-            computePi(withDigits: GmpInt(25))
+            computePi(withDigits: GmpInt(6))
         }
         
     }

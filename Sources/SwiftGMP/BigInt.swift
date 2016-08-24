@@ -3,7 +3,7 @@ import CGMP
 
 public class BigInt {
     
-    private var i = mpz_t()
+    internal var i = mpz_t()
     
     public init(_ value: Int = 0) {
         

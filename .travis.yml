@@ -11,7 +11,6 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then wget https://swift.org/builds/development/xcode/swift-DEVELOPMENT-SNAPSHOT-2016-08-23-a/swift-DEVELOPMENT-SNAPSHOT-2016-08-23-a-osx.pkg    ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo installer -pkg swift-DEVELOPMENT-SNAPSHOT-2016-08-23-a-osx.pkg -target /    ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"    ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then /usr/local/sbin/mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf -d   ; fi
 
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -y ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-2016-08-23-a/swift-DEVELOPMENT-SNAPSHOT-2016-08-23-a-ubuntu14.04.tar.gz    ; fi
@@ -22,9 +21,9 @@ before_install:
   - wget https://gmplib.org/download/gmp/gmp-6.1.1.tar.lz && tar --lzip -xvf gmp-6.1.1.tar.lz && cd gmp-6.1.1 && ./configure && make && sudo make install
 
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swift build -Xcc -fblocks -Xlinker -rpath -Xlinker .build/debug  ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swift test -Xcc -fblocks -Xlinker -rpath -Xlinker .build/debug  ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then swift build -Xcc -I/usr/local/opt/openssl/include -Xlinker -L/usr/local/opt/openssl/lib ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then swift test -Xcc -I/usr/local/opt/openssl/include -Xlinker -L/usr/local/opt/openssl/lib; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swift build -Xcc -I/usr/local -Xlinker -L/usr/local  ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then swift test ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then swift build -Xcc -I/usr/local -Xlinker -L/usr/local ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then swift test ; fi
 
 

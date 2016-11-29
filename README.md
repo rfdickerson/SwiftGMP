@@ -1,10 +1,8 @@
-# BigInt
+# SwiftGMP
 
-[![Build Status](https://travis-ci.org/IBM-Swift/BigInt.svg?branch=master)](https://travis-ci.org/IBM-Swift/BigInt)
+[![Build Status](https://travis-ci.org/rfdickerson/SwiftGMP.svg?branch=master)](https://travis-ci.org/rfdickerson/SwiftGMP)
 
 Swift wrapper around the [GMP arbitrary precision arithmetic library](https://gmplib.org/).
-
-Contains an example of using BigInts for calculating digits of Pi using the [Unbounded Spigot Algorithm](http://web.comlab.ox.ac.uk/oucl/work/jeremy.gibbons/publications/spigot.pdf)
 
 ## Features:
 
@@ -12,31 +10,26 @@ Contains an example of using BigInts for calculating digits of Pi using the [Unb
 
 ## Quickstart:
 
-- [Install the Swift Development 8-23 snapshots](https://swift.org/download/)
-- Compile from source the [GMP library](https://gmplib.org/)
+  1. Install GMP developer library
   
-  It is important to compile from source because Homebrew or apt-get do not employ the Assembly optimizations and the speed of arithmetic is noticeably slower.
+  `brew install gmp`
+  `sudo apt install libgmp-dev`
 
-  ```bash
-  ./configure
-  make 
-  make check
-  sudo make install
+
+  2. Include the library in your project
+  
+  ```swift
+  import PackageDescription
+
+  let package = Package(
+    name: "ProjectName",
+    dependencies: [
+      .Package(url: "https://github.com/rfdickerson/SwiftGMP", majorVersion: 0)
+    ]
+  )
   ```
-
-- Make sure the Swift toolchain is in your path
-
-  i.e. `export PATH=$PATH:/Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2016-08-23-a.xctoolchain/usr/bin/swift`
   
-- Compile the project:
+## Examples:
 
-  `swift build`
-  
-- Test the library:
 
-  `swift test`
-
-- Calculate digits of pi:
-
-  `./.build/release/CalculatePi`
   

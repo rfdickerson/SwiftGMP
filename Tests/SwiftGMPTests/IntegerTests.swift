@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftGMP
 
-class integerTests: XCTestCase {
+class IntegerTests: XCTestCase {
     
     func testMultiply() {
         let a = BigInt(6)
@@ -87,7 +87,7 @@ class integerTests: XCTestCase {
         XCTAssertEqual(c.intValue, -50)
     }
 
-    static var allTests : [(String, (integerTests) -> () throws -> Void)] {
+    static var allTests : [(String, (IntegerTests) -> () throws -> Void)] {
         return [
             ("testMultiply", testMultiply),
             ("testAdd", testAdd),

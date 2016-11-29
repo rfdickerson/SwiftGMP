@@ -1,6 +1,6 @@
 import XCTest
-@testable import pidigitsTestSuite
+@testable import SwiftGMPTests
 
 XCTMain([
-     testCase(pidigitsTests.allTests),
+     testCase(IntegerTests.allTests),
 ])

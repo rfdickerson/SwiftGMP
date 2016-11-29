@@ -12,7 +12,12 @@
  */
  
 import Foundation
-import CGMP
+
+#if os(Linux)
+    import CGMPLinux
+#else
+    import CGMPDarwin
+#endif
 
 public class BigInt {
     

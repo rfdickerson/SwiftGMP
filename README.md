@@ -41,10 +41,12 @@ let c = a * b
 
 Addition:
 
-```
+```swift
 let a = BigInt(6)
 let b = BigInt(7)        
 let c = a + b
 ```
+
+## License
 
 

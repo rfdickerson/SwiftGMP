@@ -31,5 +31,20 @@ Swift wrapper around the [GMP arbitrary precision arithmetic library](https://gm
   
 ## Examples:
 
+Multiplication:
 
-  
+```swift
+let a = BigInt(6)
+let b = BigInt(7)        
+let c = a * b
+```
+
+Addition:
+
+```
+let a = BigInt(6)
+let b = BigInt(7)        
+let c = a + b
+```
+
+

@@ -12,8 +12,8 @@ Swift wrapper around the [GMP arbitrary precision arithmetic library](https://gm
 
   1. Install GMP developer library
   
-  `brew install gmp`
-  `sudo apt install libgmp-dev`
+    - `brew install gmp`
+    - `sudo apt install libgmp-dev`
 
 
   2. Include the library in your project
